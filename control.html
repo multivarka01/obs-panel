@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Control Panel</title>
+</head>
+<body>
+
+<h2>Панель управления</h2>
+
+<button onclick="showImage()">Показать картинку</button>
+<button onclick="showVideo()">Показать видео со звуком</button>
+<button onclick="clearMedia()">Очистить</button>
+
+<script>
+function showImage() {
+  localStorage.setItem("currentMedia", JSON.stringify({
+    type: "image",
+    url: "https://i.imgur.com/8Km9tLL.png"
+  }));
+}
+
+function showVideo() {
+  localStorage.setItem("currentMedia", JSON.stringify({
+    type: "video",
+    url: "https://www.w3schools.com/html/mov_bbb.mp4"
+  }));
+}
+
+function clearMedia() {
+  localStorage.removeItem("currentMedia");
+}
+</script>
+
+</body>
+</html>
