@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OBS Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    img, video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+<div id="media"></div>
+
+<script>
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    type: params.get("type"),
+    url: params.get("url")
+  };
+}
+
+function showMedia() {
+  const mediaContainer = document.getElementById("media");
+  mediaContainer.innerHTML = "";
+  const { type, url } = getParams();
+
+  if (!url) return;
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = url;
+    mediaContainer.appendChild(img);
+  } else if (type === "video") {
+    const video = document.createElement("video");
+    video.src = url;
+    video.autoplay = true;
+    video.controls = false;
+    video.volume = 1;
+    mediaContainer.appendChild(video);
+  }
+}
+
+showMedia();
+</script>
+</body>
+</html>
