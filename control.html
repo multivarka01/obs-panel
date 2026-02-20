@@ -5,32 +5,34 @@
   <title>Control Panel</title>
 </head>
 <body>
-
-<h2>Панель управления</h2>
+<h2>Панель управления для OBS</h2>
 
 <button onclick="showImage()">Показать картинку</button>
-<button onclick="showVideo()">Показать видео со звуком</button>
-<button onclick="clearMedia()">Очистить</button>
+<button onclick="showVideo()">Показать видео</button>
+<button onclick="clearOverlay()">Очистить</button>
 
 <script>
+const overlayBase = "https://multivarka01.github.io/obs-panel/overlay.html";
+
+function openOverlay(url) {
+  // Перезагружает overlay в новой вкладке OBS
+  window.open(url, "_blank");
+}
+
 function showImage() {
-  localStorage.setItem("currentMedia", JSON.stringify({
-    type: "image",
-    url: "https://i.imgur.com/8Km9tLL.png"
-  }));
+  const url = overlayBase + "?type=image&url=https://i.imgur.com/8Km9tLL.png";
+  openOverlay(url);
 }
 
 function showVideo() {
-  localStorage.setItem("currentMedia", JSON.stringify({
-    type: "video",
-    url: "https://www.w3schools.com/html/mov_bbb.mp4"
-  }));
+  const url = overlayBase + "?type=video&url=https://www.w3schools.com/html/mov_bbb.mp4";
+  openOverlay(url);
 }
 
-function clearMedia() {
-  localStorage.removeItem("currentMedia");
+function clearOverlay() {
+  const url = overlayBase;
+  openOverlay(url);
 }
 </script>
-
 </body>
 </html>
